@@ -1,0 +1,35 @@
+{
+  "name": "versonic",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "webpack-dev-server --mode development --open",
+    "build": "webpack --mode production",
+    "lint": "eslint --cache --format codeframe --ext mjs,jsx,js src test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@tonaljs/tonal": "^4.1.0",
+    "prop-types": "^15.7.2",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-hot-loader": "^4.12.21",
+    "react-three-fiber": "^4.2.20",
+    "three": "^0.119.1"
+  },
+  "devDependencies": {
+    "@neutrinojs/jest": "^9.3.0",
+    "@neutrinojs/react": "^9.3.0",
+    "@neutrinojs/standardjs": "^9.3.0",
+    "eslint": "^7.7.0",
+    "jest": "^26.4.0",
+    "neutrino": "^9.3.0",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  }
+}
