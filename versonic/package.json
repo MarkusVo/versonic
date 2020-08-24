@@ -19,9 +19,11 @@
     "react-dom": "^16.13.1",
     "react-hot-loader": "^4.12.21",
     "react-three-fiber": "^4.2.20",
+    "react-xr": "^1.0.9",
     "three": "^0.119.1"
   },
   "devDependencies": {
+    "@neutrinojs/eslint": "^9.3.0",
     "@neutrinojs/jest": "^9.3.0",
     "@neutrinojs/react": "^9.3.0",
     "@neutrinojs/standardjs": "^9.3.0",

@@ -1,14 +1,23 @@
 import { hot } from 'react-hot-loader'
 import React from 'react'
-import AppShell from './components/app-shell'
-import Menue from './components/menu'
+import ReactDOM from 'react-dom'
+import { VRCanvas } from 'react-xr'
+import { ambientLight, pointLight } from 'react-three-fiber'
+import TestCube from './components/test-cube'
 import './App.css'
 
 const App = () => (
   <div className='App'>
-    <AppShell someProps={{ giveMe: 'What Ever You Want!!!!' }} />
-    <Menue someProps={{ anything: 'Else!' }} />
+    <VRCanvas>
+      <ambientLight />
+      <pointLight position={[10, 10, 10]} />
+      <TestCube position={[-1.2, 0, 0]} />
+      <TestCube position={[1.2, 0, 0]} />
+    </VRCanvas>
   </div>
 )
+
+const rootElement = document.getElementById('root')
+ReactDOM.render(<App />, rootElement)
 
 export default hot(module)(App)
