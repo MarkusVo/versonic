@@ -8,3 +8,11 @@ canvas {
   margin: 0;
   padding: 0;
 }
+
+#play-button {
+  margin-left: 1%;
+}
+
+#stop-button { 
+  margin-left: 1%;
+}

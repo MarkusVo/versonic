@@ -37,6 +37,9 @@ bower_components
 # Compiled binary addons (https://nodejs.org/api/addons.html)
 build/Release
 
+# Assets like sound Files and 3D models
+assets/
+
 # Dependency directories
 node_modules/
 jspm_packages/
