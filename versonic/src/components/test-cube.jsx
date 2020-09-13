@@ -21,6 +21,7 @@ const TestCube = (props) => {
       onClick={(e) => setActive(!active)}
       onPointerOver={(e) => setHover(true)}
       onPointerOut={(e) => setHover(false)}
+      castShadow
     >
       <boxBufferGeometry attach='geometry' args={[1, 1, 1]} />
       <meshStandardMaterial attach='material' color={hovered ? 'hotpink' : 'orange'} />
