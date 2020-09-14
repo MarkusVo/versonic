@@ -5,14 +5,15 @@ import { Button } from '@material-ui/core'
 import * as THREE from 'three'
 import { hot } from 'react-hot-loader'
 import TestCube from './components/test-cube'
+import AnimatedSphere from './components/animated-sphere'
 import Plane from './components/plane'
 import Controls from './components/controls'
 import './App.css'
 
 const App = () => {
-  const [soundFilePath, setSoundFilePath] = useState(0)
-  const [audio, setAudio] = useState(0)
-  const [playing, setPlaying] = useState(0)
+  const [soundFilePath, setSoundFilePath] = useState('')
+  const [playing, setPlaying] = useState(false)
+  const [paused, setPaused] = useState(false)
 
   // select sound File -> Note to my self: this is why javascript sucks sometimes
   const handleSelectSoundFile = e => {
@@ -20,19 +21,14 @@ const App = () => {
   }
 
   // Basic Sound controls
-  const handlePlayAudio = (audio) => {
-    audio.play()
+  const handlePlayAudio = () => {
     setPlaying(true)
+    setPaused(false)
   }
 
-  const handleStopAudio = (audio) => {
-    audio.pause()
+  const handlePauseAudio = () => {
     setPlaying(false)
-  }
-
-  // set audio with given Filename of the assets folder -> Clientside javascript can't work with files on the client
-  if (soundFilePath && !audio) {
-    setAudio(new Audio(soundFilePath))
+    setPaused(true)
   }
 
   return (
@@ -51,7 +47,7 @@ const App = () => {
         id='play-button'
         variant='contained'
         component='label'
-        onClick={() => audio ? handlePlayAudio(audio) : console.log('No sound File selected')}
+        onClick={() => handlePlayAudio() }
       >
         &#9658;
       </Button>
@@ -59,22 +55,23 @@ const App = () => {
         id='stop-button'
         variant='contained'
         component='label'
-        onClick={() => playing ? handleStopAudio(audio) : console.log('No audio playing')}
+        onClick={() => handlePauseAudio() }
       >
         &#x025FC;
       </Button>
       <Canvas
-        camera={{ position: [0, 0, 5] }} onCreated={({ gl }) => {
+        camera={{ position: [0, 0, 7] }} onCreated={({ gl }) => {
           gl.shadowMap.enabled = true
           gl.shadowMap.type = THREE.PCFSoftShadowMap
         }}
       >
         <Controls />
-        <ambientLight intensity={0.5} />
-        <spotLight position={[15, 20, 5]} penumbra={1} castShadow />
-        <pointLight position={[10, 10, 10]} />
-        <TestCube position={[0, -2, 0]} />
-        <fog attach='fog' args={['white', 10, 15]} />
+        <ambientLight intensity={0.3} />
+        <spotLight position={[0, 50, 50]} penumbra={100} castShadow intensity={0.4}/>
+        <pointLight position={[10, 10, 50]} />
+        {/* <TestCube position={[0, -2, 0]} /> */}
+        <AnimatedSphere audioFile={soundFilePath ? soundFilePath : 'cock'} playing={playing} paused={paused} />
+        <fog attach='fog' args={['white', 5, 30]}/>
         <Plane />
       </Canvas>
     </div>
