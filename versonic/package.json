@@ -23,8 +23,10 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-hot-loader": "^4.12.21",
+    "react-spring": "^8.0.27",
     "react-three-fiber": "^4.2.20",
     "react-xr": "^1.0.9",
+    "simplex-noise": "^2.4.0",
     "three": "^0.119.1"
   },
   "devDependencies": {
