@@ -1,14 +1,11 @@
-import React, { useRef, useState, useEffect } from 'react'
+import React, { useRef, useState, useEffect} from 'react'
 import { useFrame } from 'react-three-fiber'
 import { object, string } from 'prop-types'
-import SimplexNoise from 'simplex-noise'
 
-// This component should become a 3d frequency band visualiser
-const AnimatedFrequencyBandVisualiser = ({ props, audioFile }) => {
+const AnimatedCubes = ({ props, audioFile }) => {
   const [audioData, setAudioData] = useState()
   const audioContext = new AudioContext()
   const audio = new Audio()
-  const noise = new SimplexNoise()
   let source
   let analyser
 
@@ -29,39 +26,49 @@ const AnimatedFrequencyBandVisualiser = ({ props, audioFile }) => {
   }, [audioFile])
 
   let amplitudeDataArray
+  const average = (array) => array.reduce((a, b) => a + b) / array.length
 
   if (audioData) {
     const bufferLength = audioData.frequencyBinCount
     amplitudeDataArray = new Uint8Array(bufferLength)
   }
 
+  console.log(mesh)
+
   // extract data for each frame - fml someone could have told me tat this is not possible with preloaded soundData
   useFrame(() => {
     if (audioData) {
       audioData.getByteFrequencyData(amplitudeDataArray)
+
+      const lowEnd = amplitudeDataArray.slice(0, (amplitudeDataArray.length / 2) - 1)
+      const highEnd = amplitudeDataArray.slice((amplitudeDataArray.length / 2) - 1, amplitudeDataArray.length - 1)
+      const lowEndAvg = average(lowEnd)
+      const highEndAvg = average(highEnd)
+
+      mesh.current.rotation.x = mesh.current.rotation.x += lowEndAvg * 0.001
+      mesh.current.rotation.y = mesh.current.rotation.y += highEndAvg * 0.001
     }
   })
 
   return (
     <mesh
-      {...props}
       ref={mesh}
       castShadow
     >
-      <icosahedronGeometry attach='geometry' args={[4, 4]} />
-      <meshLambertMaterial attach='material' wireframe />
+      <boxBufferGeometry attach='geometry' args={[1, 1, 1]} />
+      <meshStandardMaterial attach='material' color='#700020' />
     </mesh>
   )
 }
 
-AnimatedFrequencyBandVisualiser.propTypes = {
+AnimatedCubes.propTypes = {
   props: object,
   audioFile: string
 }
 
-AnimatedFrequencyBandVisualiser.defaultProps = {
+AnimatedCubes.defaultProps = {
   props: {},
   audioFile: string
 }
 
-export default AnimatedFrequencyBandVisualiser
+export default AnimatedCubes

@@ -4,7 +4,9 @@ import { ambientLight, pointLight, Canvas } from 'react-three-fiber'
 import { Button } from '@material-ui/core'
 import * as THREE from 'three'
 import { hot } from 'react-hot-loader'
-import AnimatedSphere from './components/animated-sphere'
+// import AnimatedSphere from './components/animated-sphere'
+// import AnimatedCubes from './components/animated-cubes'
+import AnimatedFrequencyBand from './components/animated-frequency-band'
 import Plane from './components/plane'
 import Controls from './components/controls'
 import './App.css'
@@ -40,7 +42,9 @@ const App = () => {
         <spotLight position={[0, 50, 50]} penumbra={100} castShadow intensity={0.4} />
         <pointLight position={[10, 10, 50]} />
         {/* <TestCube position={[0, -2, 0]} /> */}
-        <AnimatedSphere audioFile={soundFilePath} />
+        {/* <AnimatedSphere audioFile={soundFilePath} /> */}
+        {/* <AnimatedCubes audioFile={soundFilePath} /> */}
+        <AnimatedFrequencyBand audioFile={soundFilePath} />
         <fog attach='fog' args={['white', 5, 30]} />
         <Plane />
       </Canvas>

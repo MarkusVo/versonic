@@ -19,6 +19,7 @@
     "@material-ui/core": "^4.11.0",
     "@tonaljs/tonal": "^4.1.0",
     "emotion-theming": "^10.0.27",
+    "nice-color-palettes": "^3.0.0",
     "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
@@ -27,7 +28,8 @@
     "react-three-fiber": "^4.2.20",
     "react-xr": "^1.0.9",
     "simplex-noise": "^2.4.0",
-    "three": "^0.119.1"
+    "three": "^0.119.1",
+    "web-audio-beat-detector": "^8.0.25"
   },
   "devDependencies": {
     "@neutrinojs/eslint": "^9.3.0",
