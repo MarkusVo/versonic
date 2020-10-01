@@ -27,7 +27,6 @@ const AnimatedSphere = ({ props, audioFile }) => {
     return outMin + (fr * delta)
   }
 
-  // initialize analyser node audio context 'n stuff
   useEffect(() => {
     if (audioFile) {
       source = audioContext.createMediaElementSource(audio)
@@ -50,10 +49,10 @@ const AnimatedSphere = ({ props, audioFile }) => {
 
   console.log(mesh)
 
-  // extract data for each frame - fml someone could have told me tat this is not possible with preloaded soundData
   useFrame(() => {
     if (audioData) {
       // https://medium.com/@mag_ops/music-visualiser-with-three-js-web-audio-api-b30175e7b5ba
+      // This code is adapted from the above website - not claiming this is mine
       audioData.getByteFrequencyData(amplitudeDataArray)
 
       const lowerHalf = amplitudeDataArray.slice(0, (amplitudeDataArray.length / 2) - 1)

@@ -30,7 +30,6 @@ const AnimatedFrequencyBand = ({ props, audioFile }) => {
 
   const mesh = useRef()
 
-  // initialize analyser node audio context 'n stuff
   useEffect(() => {
     if (audioFile) {
       source = audioContext.createMediaElementSource(audio)
@@ -53,7 +52,6 @@ const AnimatedFrequencyBand = ({ props, audioFile }) => {
 
   const average = (array) => array.reduce((a, b) => a + b) / array.length
 
-  // Extract Sounddata for each Frame
   useFrame(() => {
     if (audioData) {
       audioData.getByteFrequencyData(amplitudeDataArray)

@@ -14,7 +14,6 @@ import './App.css'
 const App = () => {
   const [soundFilePath, setSoundFilePath] = useState(null)
 
-  // select sound File -> Note to my self: this is why javascript sucks sometimes
   const handleSelectSoundFile = e => {
     setSoundFilePath('./assets/sound-files/' + e.target.files[0].name)
   }

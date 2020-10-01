@@ -11,7 +11,6 @@ const AnimatedCubes = ({ props, audioFile }) => {
 
   const mesh = useRef()
 
-  // initialize analyser node audio context 'n stuff
   useEffect(() => {
     if (audioFile) {
       source = audioContext.createMediaElementSource(audio)
@@ -35,7 +34,6 @@ const AnimatedCubes = ({ props, audioFile }) => {
 
   console.log(mesh)
 
-  // extract data for each frame - fml someone could have told me tat this is not possible with preloaded soundData
   useFrame(() => {
     if (audioData) {
       audioData.getByteFrequencyData(amplitudeDataArray)
